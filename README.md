@@ -1,4 +1,9 @@
-# [WIP] Math SVG image Maker
+# math2img - Math SVG image Maker
+
+## Requirements
+
+* [Crystal (Shards)](https://crystal-lang.org/)
+* [Docker](https://www.docker.com/)
 
 ## Build & Run
 
@@ -15,5 +20,5 @@ Then you can get `sample1.math.tex.png`
 
 ```bash
 cd <this repo>
-docker build -t nwtgck/math-to-image ./docker
+docker build -t nwtgck/math2img ./docker
 ```
