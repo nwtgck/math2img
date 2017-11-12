@@ -1,5 +1,6 @@
 require "tempfile"
 require 'pry'
+require 'fileutils'
 
 if ARGV.size != 1
     STDERR.puts("Usage: ruby main.rb sample1.math.tex")
@@ -45,10 +46,11 @@ Tempfile.create("", "/tmp") do |in_f|
             cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge-crop.pdf math-svg" # NOTE: Hard cording: "hoge.tex", "/latex"
             system(cmd)
 
-
-            system("cp #{out_f.path} ./test-out.pdf") # TODO impl
+            # Copy output to <in_file_path>.pdf
+            FileUtils.copy(out_f, "#{in_file_path}.pdf")
         rescue
             # This is to remove tmp files when exception
+            STDERR.puts("Ruby Error: #{$!}")
         end
     end
 end
