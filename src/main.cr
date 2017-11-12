@@ -1,14 +1,14 @@
 require "tempfile"
-require 'pry'
-require 'fileutils'
-require 'optparse'
+require "file_utils"
+require "option_parser"
 
 
 out_ext = "png"
 
-opt = OptionParser.new
-opt.on('-e EXTENSION', '--out-extension=EXTENSION'){|v| out_ext = v}
-opt.parse!(ARGV)
+opt = OptionParser.new do |opt|
+    opt.on("-e EXTENSION", "--out-extension=EXTENSION"){|v| out_ext = v}
+end.parse!
+# opt.parse!(ARGV)
 
 if ARGV.size != 1
     STDERR.puts("Usage: ruby main.rb sample1.math.tex")
@@ -17,14 +17,14 @@ end
 
 # Get input file path
 in_file_path = ARGV[0]
-if !File.exist?(in_file_path)
+if !File.exists?(in_file_path)
     STDERR.puts("'#{in_file_path}' not found")
     exit(1)
 end
 
 # Create whole tex string
-def get_whole_tex_str(math_tex_str)
-<<EOS
+def get_whole_tex_str(math_tex_str : String): String
+<<-EOS
 \\documentclass[a4paper]{article}
 \\pagestyle{empty} %(from: https://askubuntu.com/a/33198)
 \\begin{document}
@@ -40,11 +40,12 @@ end
 # Read input file content
 math_tex_str = File.read(in_file_path)
 
-Tempfile.create("", "/tmp") do |in_f|
-    Tempfile.create("", "/tmp") do |out_f|
-        
-        begin
-            
+# Set temp directory as "/tmp"
+ENV["TMPDIR"] = "/tmp"
+
+Tempfile.open("in") do |in_f|
+    Tempfile.open("out") do |out_f|
+        begin            
             # Generate latex string
             latex_str = get_whole_tex_str(math_tex_str)
             # Write to input tmp file
@@ -56,10 +57,10 @@ Tempfile.create("", "/tmp") do |in_f|
             system(cmd)
 
             # Copy output to <in_file_path>.<out_ext>
-            FileUtils.copy(out_f, "#{in_file_path}.#{out_ext}")
-        rescue
+            FileUtils.cp(out_f.path, "#{in_file_path}.#{out_ext}")
+        rescue ex
             # This is to remove tmp files when exception
-            STDERR.puts("Ruby Error: #{$!}")
+            STDERR.puts("Crystal Error: #{ex}")
         end
     end
 end

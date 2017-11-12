@@ -1,10 +1,16 @@
-# [WIP] Math SVG image Maker
+# math2img - Math SVG image Maker
 
-## Usage
+## Requirements
+
+* [Crystal (Shards)](https://crystal-lang.org/)
+* [Docker](https://www.docker.com/)
+
+## Build & Run
 
 ```bash
 cd <this repo>
-ruby main.rb -e png sample1.math.tex 
+shards build
+./bin/math2img -e png sample1.math.tex
 ```
 
 Then you can get `sample1.math.tex.png`
@@ -14,5 +20,5 @@ Then you can get `sample1.math.tex.png`
 
 ```bash
 cd <this repo>
-docker build -t nwtgck/math-to-image ./docker
+docker build -t nwtgck/math2img ./docker
 ```
