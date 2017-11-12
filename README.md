@@ -24,7 +24,7 @@ Then you can get `sample1.math.tex.png`
 ```
 =>
 
-<img src="demos/demo1.png" width="300">
+<img src="demos/demo1.svg" width="200">
 
 
 ## Build a Docker image
