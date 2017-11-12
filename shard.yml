@@ -1,0 +1,14 @@
+name: math2img
+version: 0.1.0-SNAPSHOT
+
+authors:
+  - Ryo Ota <nwtgck@gmail.com>
+
+description: |
+  Convert LaTex Math format to image
+
+targets:
+  math2img:
+    main: src/main.cr
+
+license: MIT

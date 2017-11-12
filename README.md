@@ -1,10 +1,11 @@
 # [WIP] Math SVG image Maker
 
-## Usage
+## Build & Run
 
 ```bash
 cd <this repo>
-ruby main.rb -e png sample1.math.tex 
+shards build
+./bin/math2img -e png sample1.math.tex
 ```
 
 Then you can get `sample1.math.tex.png`
