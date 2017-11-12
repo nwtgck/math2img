@@ -4,5 +4,5 @@
 
 ```bash
 cd <this repo>
-ruby main.rb
+ruby main.rb sample1.math.tex
 ```
