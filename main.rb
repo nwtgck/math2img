@@ -1,6 +1,14 @@
 require "tempfile"
 require 'pry'
 require 'fileutils'
+require 'optparse'
+
+
+out_ext = "png"
+
+opt = OptionParser.new
+opt.on('-e EXTENSION', '--out-extension=EXTENSION'){|v| out_ext = v}
+opt.parse!(ARGV)
 
 if ARGV.size != 1
     STDERR.puts("Usage: ruby main.rb sample1.math.tex")
@@ -28,7 +36,6 @@ EOS
 end
 
 
-out_ext = "svg" # TODO hard cording
 
 # Read input file content
 math_tex_str = File.read(in_file_path)

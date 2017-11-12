@@ -4,5 +4,7 @@
 
 ```bash
 cd <this repo>
-ruby main.rb sample1.math.tex
+ruby main.rb -e png sample1.math.tex 
 ```
+
+Then you can get `sample1.math.tex.png`
