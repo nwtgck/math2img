@@ -28,6 +28,8 @@ EOS
 end
 
 
+out_ext = "svg" # TODO hard cording
+
 # Read input file content
 math_tex_str = File.read(in_file_path)
 
@@ -43,11 +45,11 @@ Tempfile.create("", "/tmp") do |in_f|
             in_f.flush # NOTE: This is necessary
             
             # Run command
-            cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge-crop.pdf math-svg" # NOTE: Hard cording: "hoge.tex", "/latex"
+            cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge.#{out_ext} math-svg #{out_ext}" # NOTE: Hard cording: "hoge.tex", "/latex"
             system(cmd)
 
-            # Copy output to <in_file_path>.pdf
-            FileUtils.copy(out_f, "#{in_file_path}.pdf")
+            # Copy output to <in_file_path>.<out_ext>
+            FileUtils.copy(out_f, "#{in_file_path}.#{out_ext}")
         rescue
             # This is to remove tmp files when exception
             STDERR.puts("Ruby Error: #{$!}")
