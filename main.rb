@@ -52,7 +52,7 @@ Tempfile.create("", "/tmp") do |in_f|
             in_f.flush # NOTE: This is necessary
             
             # Run command
-            cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge.#{out_ext} math-svg #{out_ext}" # NOTE: Hard cording: "hoge.tex", "/latex"
+            cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge.#{out_ext} nwtgck/math-to-image #{out_ext}" # NOTE: Hard cording: "hoge.tex", "/latex"
             system(cmd)
 
             # Copy output to <in_file_path>.<out_ext>
