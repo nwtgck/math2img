@@ -1,4 +1,4 @@
-# math2img - Math SVG image Maker
+# math2img - Convert LaTeX Math to image
 
 ## Requirements
 
@@ -14,6 +14,17 @@ shards build
 ```
 
 Then you can get `sample1.math.tex.png`
+
+### `sample1.math.tex`
+
+```tex
+\[
+    e^{i\pi}+1=0
+\]
+```
+=>
+
+<img src="demos/demo1.svg" width="200">
 
 
 ## Build a Docker image
