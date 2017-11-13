@@ -11,7 +11,7 @@ end.parse!
 # opt.parse!(ARGV)
 
 if ARGV.size != 1
-    STDERR.puts("Usage: ruby main.rb sample1.math.tex")
+    STDERR.puts("Usage: math2img sample1.math.tex")
     exit(1)
 end
 
