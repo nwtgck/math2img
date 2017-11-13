@@ -31,6 +31,7 @@ def get_whole_tex_str(math_tex_str : String): String
 <<-EOS
 \\documentclass[a4paper]{article}
 \\pagestyle{empty} %(from: https://askubuntu.com/a/33198)
+\\usepackage{mathtools}
 \\begin{document}
 
 #{math_tex_str}
