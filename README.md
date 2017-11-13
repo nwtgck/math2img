@@ -42,7 +42,7 @@ Then you can get `sample1.math.tex.png`
 git clone <this repo url>
 cd <this repo>
 shards build
-./bin/math2img -e png sample1.math.tex
+./bin/math2img -e png samples/sample1.math.tex
 ```
 
 Then you can get `sample1.math.tex.png`
@@ -56,3 +56,19 @@ Then you can get `sample1.math.tex.png`
 cd <this repo>
 docker build -t nwtgck/math2img ./docker
 ```
+
+## Gallery
+
+<img src="demos/sample2.math.tex.svg" height="50"><br>
+
+<img src="demos/sample3.math.tex.svg" height="50"><br>
+
+<img src="demos/sample4.math.tex.svg" height="50"><br>
+
+<img src="demos/sample5.math.tex.svg" height="50"><br>
+
+<img src="demos/sample6.math.tex.svg" height="50"><br>
+
+<img src="demos/sample7.math.tex.svg" height="50"><br>
+
+
