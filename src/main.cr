@@ -2,6 +2,10 @@ require "tempfile"
 require "file_utils"
 require "option_parser"
 
+if !File.exists?(`which docker`.chomp)
+    STDERR.puts("Error: Install Docker to run math2img")
+    exit(1)
+end
 
 out_ext = "png"
 
