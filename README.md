@@ -42,7 +42,7 @@ Then you can get `sample1.math.tex.png`
 git clone <this repo url>
 cd <this repo>
 shards build
-./bin/math2img -e png sample1.math.tex
+./bin/math2img -e png samples/sample1.math.tex
 ```
 
 Then you can get `sample1.math.tex.png`
