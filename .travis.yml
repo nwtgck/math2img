@@ -5,4 +5,11 @@ service: docker
 script:
   - docker build -t nwtgck/math2img ./docker
   - shards build
+
   - ./bin/math2img -e png samples/sample1.math.tex
+  - ./bin/math2img -e png samples/sample2.math.tex
+  - ./bin/math2img -e png samples/sample3.math.tex
+  - ./bin/math2img -e png samples/sample4.math.tex
+  - ./bin/math2img -e png samples/sample5.math.tex
+  - ./bin/math2img -e png samples/sample6.math.tex
+  - ./bin/math2img -e png samples/sample7.math.tex
