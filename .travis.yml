@@ -1,0 +1,8 @@
+language: crystal
+
+service: docker
+
+script:
+  - docker build -t nwtgck/math2img ./docker
+  - shards build
+  - ./bin/math2img -e png samples/sample1.math.tex
