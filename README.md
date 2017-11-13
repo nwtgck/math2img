@@ -1,4 +1,4 @@
-# math2img - Convert LaTeX Math to image
+# math2img - Convert LaTeX Math to image [![Build Status](https://travis-ci.org/nwtgck/math2img.svg?branch=master)](https://travis-ci.org/nwtgck/math2img)
 
 ## Requirements
 
