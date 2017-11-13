@@ -2,6 +2,10 @@ require "tempfile"
 require "file_utils"
 require "option_parser"
 
+if !File.exists?(`which docker`.chomp)
+    STDERR.puts("Error: Install Docker to run math2img")
+    exit(1)
+end
 
 out_ext = "png"
 
@@ -11,7 +15,7 @@ end.parse!
 # opt.parse!(ARGV)
 
 if ARGV.size != 1
-    STDERR.puts("Usage: ruby main.rb sample1.math.tex")
+    STDERR.puts("Usage: math2img sample1.math.tex")
     exit(1)
 end
 
