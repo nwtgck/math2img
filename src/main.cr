@@ -10,9 +10,13 @@ end
 out_ext = "png"
 
 opt = OptionParser.new do |opt|
-    opt.on("-e EXTENSION", "--out-extension=EXTENSION"){|v| out_ext = v}
+    opt.banner = "math2img [option] <file path>"
+    opt.on("-e EXTENSION", "--out-extension=EXTENSION", "Specify file extension of output"){|v| out_ext = v}
+    opt.on("-h",           "--help"                   , "Show help"){
+        puts(opt)
+        exit(0)
+    }
 end.parse!
-# opt.parse!(ARGV)
 
 if ARGV.size == 0
     STDERR.puts("Usage: math2img sample1.math.tex")
