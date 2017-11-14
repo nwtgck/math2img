@@ -40,32 +40,37 @@ def get_whole_tex_str(math_tex_str : String): String
 EOS
 end
 
+# Generate image including .svg, .png or .pdf
+def generate_img(in_file_path, out_ext)
+    # Read input file content
+    math_tex_str = File.read(in_file_path)
 
+    # Set temp directory as "/tmp"
+    ENV["TMPDIR"] = "/tmp"
 
-# Read input file content
-math_tex_str = File.read(in_file_path)
+    Tempfile.open("in") do |in_f|
+        Tempfile.open("out") do |out_f|
+            begin            
+                # Generate latex string
+                latex_str = get_whole_tex_str(math_tex_str)
+                # Write to input tmp file
+                in_f << latex_str
+                in_f.flush # NOTE: This is necessary
+                
+                # Run command
+                cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge.#{out_ext} nwtgck/math2img #{out_ext}" # NOTE: Hard cording: "hoge.tex", "/latex"
+                system(cmd)
 
-# Set temp directory as "/tmp"
-ENV["TMPDIR"] = "/tmp"
-
-Tempfile.open("in") do |in_f|
-    Tempfile.open("out") do |out_f|
-        begin            
-            # Generate latex string
-            latex_str = get_whole_tex_str(math_tex_str)
-            # Write to input tmp file
-            in_f << latex_str
-            in_f.flush # NOTE: This is necessary
-            
-            # Run command
-            cmd = "docker run --rm -v #{in_f.path}:/latex/hoge.tex -v #{out_f.path}:/latex/hoge.#{out_ext} nwtgck/math2img #{out_ext}" # NOTE: Hard cording: "hoge.tex", "/latex"
-            system(cmd)
-
-            # Copy output to <in_file_path>.<out_ext>
-            FileUtils.cp(out_f.path, "#{in_file_path}.#{out_ext}")
-        rescue ex
-            # This is to remove tmp files when exception
-            STDERR.puts("Crystal Error: #{ex}")
+                # Copy output to <in_file_path>.<out_ext>
+                FileUtils.cp(out_f.path, "#{in_file_path}.#{out_ext}")
+            rescue ex
+                # This is to remove tmp files when exception
+                STDERR.puts("Crystal Error: #{ex}")
+            end
         end
     end
 end
+
+# Generate image including .svg, .png or .pdf
+generate_img(in_file_path, out_ext)
+
