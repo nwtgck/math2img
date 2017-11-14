@@ -14,17 +14,11 @@ opt = OptionParser.new do |opt|
 end.parse!
 # opt.parse!(ARGV)
 
-if ARGV.size != 1
+if ARGV.size == 0
     STDERR.puts("Usage: math2img sample1.math.tex")
     exit(1)
 end
 
-# Get input file path
-in_file_path = ARGV[0]
-if !File.exists?(in_file_path)
-    STDERR.puts("'#{in_file_path}' not found")
-    exit(1)
-end
 
 # Create whole tex string
 def get_whole_tex_str(math_tex_str : String): String
@@ -42,6 +36,13 @@ end
 
 # Generate image including .svg, .png or .pdf
 def generate_img(in_file_path, out_ext)
+
+    # If file doesn't exist
+    if !File.exists?(in_file_path)
+        STDERR.puts("'#{in_file_path}' not found")
+        return
+    end
+
     # Read input file content
     math_tex_str = File.read(in_file_path)
 
@@ -71,6 +72,16 @@ def generate_img(in_file_path, out_ext)
     end
 end
 
-# Generate image including .svg, .png or .pdf
-generate_img(in_file_path, out_ext)
+# File patters
+file_patterns = ARGV
+
+file_patterns
+    .flat_map{|ptn| Dir.glob(ptn)}
+    .each{|in_file_path|
+        # Generate image including .svg, .png or .pdf
+        generate_img(in_file_path, out_ext)
+    }
+
+
+
 
