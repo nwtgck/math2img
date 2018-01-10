@@ -30,6 +30,7 @@ def get_whole_tex_str(math_tex_str : String): String
 \\documentclass[a4paper]{article}
 \\pagestyle{empty} %(from: https://askubuntu.com/a/33198)
 \\usepackage{mathtools}
+\\usepackage{booktabs} % (for \toprule in table)
 \\begin{document}
 
 #{math_tex_str}
