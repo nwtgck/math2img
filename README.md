@@ -7,8 +7,7 @@
 ## Installation
 
 ```bash
-brew tap nwtgck/math2img
-brew install math2img
+brew install nwtgck/homebrew-math2img/math2img
 ```
 
 
