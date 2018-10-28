@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Ryo Ota <nwtgck@gmail.com>
+LABEL maintainer="Ryo Ota <nwtgck@gmail.com>"
 
 # This is for apt-add-repository command
 RUN apt update && apt install -y software-properties-common
